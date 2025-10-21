@@ -9,16 +9,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 @Module({
   imports: [
     StringsModule,
-    ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
-    MongooseModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => (
-        console.log('🚀 Mongo URI from config:', configService.get<string>('mongoUri')),
-        {
-        uri: configService.get<string>('mongoUri'),
-      }),
-    }),
+    ConfigModule.forRoot({ isGlobal: true }),
+    MongooseModule.forRoot(process.env.MONGO_URI),
   ],
   controllers: [AppController],
   providers: [AppService],
