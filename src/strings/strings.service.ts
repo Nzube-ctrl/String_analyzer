@@ -23,7 +23,8 @@ export class StringsService {
     const existing = await this.stringModel.findOne({
       sha256_hash: analysis.sha256_hash,
     });
-    if (existing) throw new ConflictException('String already exists');
+    if (existing)
+      throw new ConflictException('String already exists in the system');
     const newDoc = new this.stringModel({
       sha256_hash: analysis.sha256_hash,
       value,

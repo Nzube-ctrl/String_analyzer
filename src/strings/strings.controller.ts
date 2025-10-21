@@ -7,6 +7,7 @@ import {
   Param,
   Query,
   HttpCode,
+  BadRequestException
 } from '@nestjs/common';
 import { StringsService } from './strings.service';
 import { FilterQueryDto } from 'src/dto/filter.query.dto';
@@ -17,6 +18,7 @@ export class StringsController {
   constructor(private stringService: StringsService) {}
 
   @Post()
+  @HttpCode(201)
   async create(@Body() dto: CreateStringDto) {
     return this.stringService.createString(dto);
   }
