@@ -11,6 +11,12 @@ export class StringAnalysis extends Document {
 
   @Prop({ type: Object })
   properties: Record<string, any>;
+
+  @Prop()
+  created_at: Date;
+
+  @Prop()
+  updated_at: Date;
 }
 export const StringAnalysisSchema =
   SchemaFactory.createForClass(StringAnalysis);

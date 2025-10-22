@@ -66,9 +66,21 @@ export class StringsService {
     const result = await this.getAllStrings(filters);
     return {
       ...result,
-      interpreted_query: { original: query, parsed_filters: filters },
+      interpreted_query: {
+        original: query,
+        parsed_filters: filters,
+      },
     };
   }
+
+  // async naturalLanguageFilter(query: string) {
+  //   const filters = parseNaturalLanguageQuery(query);
+  //   const result = await this.getAllStrings(filters);
+  //   return {
+  //     ...result,
+  //     interpreted_query: { original: query, parsed_filters: filters },
+  //   };
+  // }
 
   async deleteString(value: string) {
     const hash = analyzeString(value).sha256_hash;
